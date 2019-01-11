@@ -1,0 +1,13 @@
+#mainScreen{
+    width: 1000px;
+    height: 700px;
+    border: 1px solid black;
+    margin: 0 auto;
+    position: relative;
+};
+
+.paddle{
+    position: absolute; 
+    border: 1px solid black; 
+    background-color: darkslateblue;
+};
