@@ -31,6 +31,10 @@ const keyEventHandler = function (paddle, paddleDiv) {
     drawPaddle(paddleDiv, paddle);
 };
 
+const moveBall = function() {
+    
+}
+
 const initialize = function () {
     startGame(document);
 };
