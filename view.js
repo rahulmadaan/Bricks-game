@@ -9,6 +9,7 @@ const createPaddle = function (document) {
     document.getElementById('mainScreen').appendChild(paddle);
     return paddle;
 };
+
 const drawPaddle = function (paddleDiv, paddle) {
     const setPaddleProperty = function (property) {
         paddleDiv.style[property] = addpixelSuffix(paddle[property]);

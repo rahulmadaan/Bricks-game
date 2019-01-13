@@ -12,6 +12,9 @@ class Paddle {
     moveRight() {
         this.left = (this.left + 10) % 860 || this.left;
     }
+    getLeft(){
+        return this.left;
+    }
 };
 
 class Ball {
@@ -22,5 +25,11 @@ class Ball {
         this.bottom = bottom;
         this['border-radius'] = borderRadius;
     }
-
+    moveUp(){
+        this.bottom = this.bottom + 10;
+    }
+    moveBottom(){
+        this.bottom = this.bottom - 10;
+    }
+    
 };
