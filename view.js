@@ -30,7 +30,7 @@ const drawBall = function (ballDiv, ball) {
     const setBallProperty = function (property) {
         ballDiv.style[property] = addpixelSuffix(ball[property]);
     }
-    const properties = ['width', 'height', 'left', 'bottom', 'border-radius'];
+    const properties = ['width', 'height', 'left', 'top', 'horizontalBoundary', 'verticalBoundary'];
     properties.forEach(setBallProperty);
 };
 

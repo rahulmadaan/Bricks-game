@@ -2,23 +2,26 @@ const ARROW_LEFT = "ArrowLeft";
 const ARROW_RIGHT = "ArrowRight";
 const mainScreen = (document) => document.getElementById('mainScreen');
 
+
+const paddle = new Paddle(200, 30, 400, 0);
+const ball = new Ball(50, 400, 540);
+const game = new Game(paddle, ball, 1000, 700);
+
 const insertPaddle = function () {
-    const paddle = new Paddle(200, 30, 400, 0);
     const paddleDiv = createPaddle(document);
     const screen = mainScreen(document);
     screen.onkeydown = keyEventHandler.bind(null, paddle, paddleDiv);
     drawPaddle(paddleDiv, paddle);
 };
 
-const insertBall = function () {
-    const ball = new Ball(50, 430, 50);
+const insertBall = function (document) {
     const ballDiv = createBall(document);
     drawBall(ballDiv, ball);
     return { ballDiv, ball };
 };
 
 const startGame = function (document) {
-    insertPaddle();
+    insertPaddle(document);
     let ball = insertBall();
     moveBall(ball);
 };
@@ -35,17 +38,21 @@ const keyEventHandler = function (paddle, paddleDiv) {
 
 const moveBall = function (element) {
     let { ballDiv, ball } = element;
-    let move = ball.moveUp.bind(ball);
-    let bounds = { bottom: 30, top: 650, left: 200, right: 200 };
     setInterval(() => {
-        if (ball.bottom == bounds.bottom) {
-            move = ball.moveUp.bind(ball);
+        if (game.isHorizontalCollide()) {
+            ball.changeHorizontalDirection();
         }
-        if (ball.bottom == bounds.top) {
-            move = ball.moveBottom.bind(ball);
+        if (game.isVerticalCollide()) {
+            ball.changeVerticalDirection();
         }
-        move();
+        if (game.isBottomCollide()) {
+            ball.changeVerticalDirection(); // collide on bottom under the paddle
+        }
+
+        ball.moveHorizontal();
+        ball.moveVertical();
         drawBall(ballDiv, ball);
+
     }, 30);
 }
 
@@ -54,4 +61,3 @@ const initialize = function () {
 };
 
 window.onload = initialize;
-
