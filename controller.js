@@ -47,8 +47,11 @@ const moveBall = function (element) {
         }
         if (game.isBottomCollide()) {
             ball.changeVerticalDirection(); // collide on bottom under the paddle
+            alert('game over');
         }
-
+        if (game.isAtPaddle()) {
+            ball.changeVerticalDirection();
+        }
         ball.moveHorizontal();
         ball.moveVertical();
         drawBall(ballDiv, ball);

@@ -18,7 +18,7 @@ class Paddle {
 };
 
 class Ball {
-    constructor(radius, left, top,) {
+    constructor(radius, left, top) {
         this.width = radius;
         this.height = radius;
         this.left = left;
@@ -59,7 +59,12 @@ class Game {
     isBottomCollide() {
         return this.ball.top == this.verticalBoundary - this.ball.width;
     }
-
+    isAtPaddle() {
+        return (
+            this.ball.top + this.ball.width == this.verticalBoundary - this.paddle.height &&
+            this.ball.left + (this.ball.width /2) >= this.paddle.left && this.ball.left <= (this.paddle.left +this.paddle.width)
+        )
+    }
 
 
 
